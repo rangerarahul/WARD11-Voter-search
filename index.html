@@ -3,532 +3,1024 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>वार्ड 11 मतदाता खोज</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
-  margin:0;
-  font-family:Arial,"Noto Sans Devanagari",sans-serif;
-  background:#fff8e8;
-  color:#222;
+margin:0;
+font-family:Arial,"Noto Sans Devanagari",sans-serif;
+background:#fff8e7;
+color:#29211d;
 }
 
-.top{
-  background:#252f91;
-  color:white;
-  padding:12px 14px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  font-size:20px;
-  font-weight:bold;
+.wrap{
+max-width:760px;
+margin:auto;
+padding:15px;
 }
 
-.ward{
-  background:white;
-  color:#252f91;
-  border-radius:10px;
-  padding:4px 12px;
-  margin-right:6px;
+/* SEARCH */
+.searchbox{
+background:white;
+border:3px solid #29211d;
+border-radius:25px;
+padding:12px 16px;
+display:flex;
+align-items:center;
+gap:10px;
+box-shadow:5px 5px 0 #f1b900;
+margin-bottom:22px;
 }
 
-.ballot{
-  background:#f5a900;
-  color:#111;
-  padding:8px 14px;
-  border-radius:25px;
-  font-size:17px;
+.searchbox span{
+font-size:35px;
 }
 
+.searchbox input{
+border:0;
+outline:0;
+font-size:19px;
+width:100%;
+}
+
+.clear{
+border:0;
+border-radius:50%;
+width:42px;
+height:42px;
+font-size:25px;
+background:#ffe5e5;
+color:#a71925;
+}
+
+/* HEADER */
 .hero{
-  background:linear-gradient(135deg,#fff0a8,#ffc928);
-  text-align:center;
-  padding:22px 15px 25px;
-  border-bottom:5px solid #b00000;
+background:linear-gradient(110deg,#ffd12e,#ffe98b);
+border-radius:25px;
+padding:18px;
+display:flex;
+align-items:center;
+gap:18px;
+border:3px solid white;
+box-shadow:0 4px 12px #d9c38b;
 }
 
-.logo{
-  width:100px;
-  height:100px;
-  object-fit:contain;
-  background:white;
-  border-radius:50%;
-  padding:5px;
-  margin-bottom:8px;
+.hero img{
+width:135px;
+height:135px;
+object-fit:cover;
+border-radius:50%;
+border:6px solid white;
 }
 
 .party{
-  font-size:24px;
-  font-weight:bold;
-  color:#17365d;
+display:inline-block;
+background:#3e4197;
+color:white;
+padding:7px 15px;
+border-radius:9px;
+font-weight:bold;
 }
 
-.name{
-  font-size:31px;
-  font-weight:bold;
-  color:#a40000;
-  margin:5px 0;
+.hero h1{
+margin:8px 0 3px;
+color:#a51e2b;
+font-size:29px;
 }
 
-.location{
-  font-size:20px;
-  font-weight:bold;
+.hero p{
+margin:4px 0;
+font-weight:bold;
+font-size:18px;
 }
 
-.buttons{
-  display:flex;
-  gap:10px;
-  justify-content:center;
-  margin-top:15px;
-  flex-wrap:wrap;
+/* BALLOT */
+.ballotRow{
+display:flex;
+gap:12px;
+margin:15px 0;
 }
 
-.btn{
-  color:white;
-  padding:10px 18px;
-  border-radius:22px;
-  font-weight:bold;
-  font-size:17px;
+.ballot,.symbol{
+flex:1;
+background:white;
+border:2px solid #e3ca7c;
+border-radius:18px;
+padding:15px;
+text-align:center;
 }
 
-.red{
-  background:#b51218;
+.ballot{
+background:#3e4197;
+color:white;
 }
 
-.green{
-  background:#168b3a;
+.ballot small,
+.symbol small{
+display:block;
+font-weight:bold;
+font-size:15px;
 }
 
-.search-section{
-  padding:22px 16px;
-  max-width:700px;
-  margin:auto;
+.ballot strong{
+font-size:42px;
 }
 
-.heading{
-  text-align:center;
-  font-size:28px;
-  font-weight:bold;
-  margin-bottom:10px;
+.symbol{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
 }
 
-.info{
-  text-align:center;
-  color:#555;
-  line-height:1.6;
-  margin-bottom:18px;
+.symbol img{
+width:55px;
+height:55px;
+object-fit:contain;
 }
 
-.searchbox{
-  width:100%;
-  padding:17px 18px;
-  border:3px solid #3b2615;
-  border-radius:28px;
-  font-size:18px;
-  outline:none;
-  background:white;
+.symbol b{
+font-size:20px;
+color:#a51e2b;
 }
 
-.searchbox:focus{
-  border-color:#168b3a;
+/* MAIN */
+.section{
+background:white;
+border:2px solid #e2cc87;
+border-radius:24px;
+padding:20px;
+margin-top:18px;
+box-shadow:0 4px 10px #e7d9ae;
 }
 
-.result-count{
-  margin:15px 0;
-  font-weight:bold;
-  color:#333;
+.section h2{
+margin-top:0;
 }
 
-.card{
-  background:white;
-  border-radius:15px;
-  padding:18px;
-  margin:12px 0;
-  box-shadow:0 3px 12px rgba(0,0,0,.12);
-  border-left:5px solid #168b3a;
+.muted{
+color:#746960;
 }
 
-.card h3{
-  margin:0 0 12px;
-  color:#17365d;
-  font-size:21px;
+/* RESULT */
+.voter{
+border:3px solid #29221d;
+border-radius:20px;
+padding:17px;
+margin-top:18px;
+background:#fff;
 }
 
-.row{
-  padding:5px 0;
-  border-bottom:1px solid #eee;
+.topline{
+display:flex;
+justify-content:space-between;
+font-weight:bold;
+border-bottom:1px solid #aaa;
+padding-bottom:8px;
 }
 
-.row:last-child{
-  border-bottom:none;
+.voter h3{
+font-size:27px;
+margin:12px 0 5px;
 }
 
-.label{
-  font-weight:bold;
-  color:#555;
+.detail{
+font-size:18px;
+line-height:1.7;
 }
 
-.noresult{
-  background:#fff;
-  padding:20px;
-  border-radius:12px;
-  text-align:center;
-  margin-top:15px;
-  color:#a00000;
-  font-weight:bold;
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:9px;
+margin:15px 0;
 }
 
-.footer{
-  text-align:center;
-  padding:25px 15px;
-  background:#222;
-  color:white;
-  margin-top:25px;
-  font-size:13px;
-  line-height:1.6;
+.stat{
+padding:11px;
+border-radius:17px;
+text-align:center;
+color:white;
+font-weight:bold;
 }
 
-@media(max-width:500px){
-  .top{
-    font-size:16px;
-  }
+.stat:nth-child(1){background:#3e4197}
+.stat:nth-child(2){background:#b43132}
+.stat:nth-child(3){
+background:#efb72d;
+color:#211b16;
+}
 
-  .ballot{
-    font-size:14px;
-    padding:7px 10px;
-  }
+.stat small{
+display:block;
+}
 
-  .party{
-    font-size:20px;
-  }
+.stat strong{
+font-size:30px;
+}
 
-  .name{
-    font-size:27px;
-  }
+/* POLLING CENTER */
+.poll{
+background:#fff4ce;
+border:2px solid #e7d39a;
+border-radius:17px;
+padding:17px;
+margin-top:15px;
+font-size:17px;
+line-height:1.6;
+}
 
-  .heading{
-    font-size:25px;
-  }
+.poll h4{
+font-size:21px;
+margin:0 0 5px;
+}
+
+/* HOUSE */
+.houseList{
+background:#fff;
+border:2px solid #e7d39a;
+border-radius:17px;
+padding:15px;
+margin-top:15px;
+}
+
+.houseList h4{
+margin:0 0 10px;
+}
+
+.houseList div{
+padding:8px 0;
+border-bottom:1px dotted #cbb76e;
+}
+
+/* BUTTONS */
+.actions{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-top:15px;
+}
+
+.action{
+border:2px solid #dfc477;
+background:white;
+border-radius:16px;
+padding:12px 15px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.action.primary{
+background:#168d4c;
+color:white;
+border-color:#106d39;
+}
+
+.action.danger{
+background:#fff3f3;
+}
+
+/* INFO */
+.disclaimer{
+font-size:14px;
+color:#756a61;
+line-height:1.6;
+margin-top:15px;
+}
+
+.empty{
+text-align:center;
+padding:25px;
+color:#756a61;
+font-size:17px;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+
+.hero{
+flex-direction:column;
+text-align:center;
+}
+
+.hero img{
+width:120px;
+height:120px;
+}
+
+.hero h1{
+font-size:25px;
+}
+
+.hero p{
+font-size:16px;
+}
+
+.ballotRow{
+gap:7px;
+}
+
+.symbol b{
+font-size:17px;
+}
+
+.searchbox input{
+font-size:17px;
+}
+
+.voter h3{
+font-size:23px;
+}
+
+.detail{
+font-size:16px;
+}
+
+.action{
+width:100%;
+}
+}
+
+/* PRINT / PDF */
+@media print{
+
+body{
+background:white;
+}
+
+.searchbox,
+.hero,
+.ballotRow,
+.section>h2,
+.section>p,
+.actions,
+footer{
+display:none!important;
+}
+
+.wrap{
+padding:0;
+max-width:700px;
+}
+
+.section{
+border:0;
+box-shadow:none;
+padding:0;
+}
+
+.voter{
+box-shadow:none;
+page-break-inside:avoid;
+}
 }
 </style>
 </head>
 
 <body>
 
-<div class="top">
-  <div>
-    वार्ड <span class="ward">11</span>
-    नीम का थाना नगर पालिका
-  </div>
+<div class="wrap">
 
-  <div class="ballot">
-    🪷 बैलेट नं. 2
-  </div>
+<!-- SEARCH -->
+<div class="searchbox">
+<span>⌕</span>
+
+<input
+id="search"
+type="search"
+placeholder="नाम, मकान नं. या क्रम संख्या..."
+autocomplete="off">
+
+<button class="clear" id="clear">×</button>
 </div>
 
+
+<!-- HEADER -->
 <div class="hero">
 
-  <img src="bjp-logo.png.JPG" class="logo" alt="BJP Logo">
+<img src="IMG_4562.jpeg" alt="उम्मीदवार">
 
-  <div class="party">भारतीय जनता पार्टी</div>
+<div>
+<div class="party">भारतीय जनता पार्टी</div>
 
-  <div class="name">कमल का फूल</div>
+<h1>वार्ड 11</h1>
 
-  <div class="location">
-    नीम का थाना नगर पालिका
-  </div>
+<p>नीम का थाना नगर पालिका</p>
 
-  <div class="buttons">
-    <div class="btn red">नगर पालिका चुनाव 2026</div>
-    <div class="btn green">कमल का बटन दबाएँ</div>
-  </div>
+<p>नगर पालिका चुनाव 2026</p>
+</div>
 
 </div>
 
-<div class="search-section">
 
-  <div class="heading">
-    अपनी मतदाता पर्ची खोजें
-  </div>
+<!-- BALLOT -->
+<div class="ballotRow">
 
-  <div class="info">
-    अपना नाम, पिता/पति का नाम, मकान नं. या क्रम संख्या लिखें।
-    <br>
-    नाम लिखते ही संबंधित मतदाता की जानकारी सामने आएगी।
-  </div>
+<div class="ballot">
+<small>बैलेट नं.</small>
+<strong>2</strong>
+</div>
 
-  <input
-    id="search"
-    class="searchbox"
-    type="text"
-    placeholder="🔍 नाम, मकान नं. या क्रम संख्या..."
-    autocomplete="off"
-  >
+<div class="symbol">
 
-  <div id="count" class="result-count"></div>
+<img src="bjp-logo.png.JPG" alt="BJP">
 
-  <div id="results"></div>
+<div>
+<small>चुनाव चिन्ह</small>
+<b>कमल का फूल</b>
+</div>
 
 </div>
 
-<div class="footer">
-  यह एक निजी एवं अनौपचारिक मतदाता सहायता सुविधा है।<br>
-  आधिकारिक मतदाता सूची/निर्वाचन आयोग का रिकॉर्ड ही अंतिम एवं मान्य होगा।
 </div>
+
+
+<!-- SEARCH RESULT -->
+<div class="section">
+
+<h2>अपनी मतदाता पर्ची खोजें</h2>
+
+<p class="muted">
+नाम, पिता/पति का नाम, मकान नं. या क्रम संख्या से खोजें।
+</p>
+
+<div id="result">
+<div class="empty">
+ऊपर अपना नाम, मकान नंबर या क्रम संख्या लिखें।
+</div>
+</div>
+
+</div>
+
+</div>
+
 
 <script>
 
-let voters = [];
+let voters=[];
 
-/* voters.json से पूरा voter data लाना */
-fetch("voters.json")
-.then(response => response.json())
-.then(data => {
-
-  /* अलग-अलग JSON format को support करेगा */
-  if(Array.isArray(data)){
-    voters = data;
-  }
-  else if(Array.isArray(data.voters)){
-    voters = data.voters;
-  }
-  else if(Array.isArray(data.data)){
-    voters = data.data;
-  }
-  else{
-    voters = [];
-  }
-
-  document.getElementById("count").innerText =
-    "कुल मतदाता: " + voters.length;
-
-})
-.catch(error => {
-
-  console.error(error);
-
-  document.getElementById("count").innerText =
-    "मतदाता डेटा लोड नहीं हो पाया।";
-
-});
+const search=document.getElementById("search");
+const result=document.getElementById("result");
+const clear=document.getElementById("clear");
 
 
-/* किसी भी नाम से field पहचानने की कोशिश */
-function getValue(v, possibleKeys){
+function clean(value){
+return String(value ?? "")
+.toLowerCase()
+.replace(/\s+/g," ")
+.trim();
+}
 
-  for(let key of possibleKeys){
 
-    if(v[key] !== undefined && v[key] !== null){
+function getValue(obj,keys){
 
-      return String(v[key]).trim();
+for(const key of keys){
 
-    }
+if(
+obj &&
+obj[key] !== undefined &&
+obj[key] !== null &&
+String(obj[key]).trim() !== ""
+){
+return String(obj[key]).trim();
+}
 
-  }
+}
 
-  return "";
+return "";
+}
+
+
+function maskEPIC(value){
+
+if(!value){
+return "उपलब्ध नहीं";
+}
+
+value=value.trim();
+
+if(value.length<=5){
+return "••••";
+}
+
+return value.slice(0,3)+"••••"+value.slice(-3);
+}
+
+
+/* VOTER CARD */
+
+function voterCard(v,index){
+
+const name=getValue(v,["name","नाम"]) || "नाम उपलब्ध नहीं";
+
+const relative=getValue(v,[
+"relative",
+"father",
+"husband",
+"पिता/पति का नाम"
+]);
+
+const age=getValue(v,["age","उम्र"]);
+
+const gender=getValue(v,["gender","लिंग"]);
+
+const house=getValue(v,[
+"house",
+"house_no",
+"मकान नं."
+]);
+
+const serial=getValue(v,[
+"serial",
+"क्रम संख्या"
+]);
+
+const epic=getValue(v,[
+"epic",
+"EPIC",
+"Voter ID"
+]);
+
+const part=getValue(v,[
+"part",
+"भाग संख्या"
+]) || "1";
+
+const booth=getValue(v,[
+"booth",
+"बूथ"
+]) || "1";
+
+
+return `
+
+<div class="voter">
+
+<div class="topline">
+
+<span>मतदाता सूचना पर्ची</span>
+
+<span>
+वार्ड 11 · नीम का थाना नगर पालिका
+</span>
+
+</div>
+
+
+<div style="
+display:flex;
+justify-content:space-between;
+gap:10px;
+">
+
+<h3>${name}</h3>
+
+<h3>क्रम ${serial || "-"}</h3>
+
+</div>
+
+
+<div class="detail">
+
+${relative ?
+`<div>
+पिता/पति का नाम:
+<b>${relative}</b>
+</div>`
+:""}
+
+
+<div>
+
+${age ? age+" वर्ष" : ""}
+
+${gender ? " · "+gender : ""}
+
+${house ? " · मकान "+house : ""}
+
+</div>
+
+
+<div>
+
+वोटर आईडी:
+<b>${maskEPIC(epic)}</b>
+
+</div>
+
+</div>
+
+
+<!-- THREE BOXES -->
+
+<div class="stats">
+
+<div class="stat">
+
+<small>भाग संख्या</small>
+
+<strong>${part}</strong>
+
+</div>
+
+
+<div class="stat">
+
+<small>क्रम संख्या</small>
+
+<strong>${serial || "-"}</strong>
+
+</div>
+
+
+<div class="stat">
+
+<small>बूथ नं.</small>
+
+<strong>${booth}</strong>
+
+</div>
+
+</div>
+
+
+<!-- POLLING CENTER -->
+
+<div class="poll">
+
+<h4>📍 आपका मतदान केंद्र</h4>
+
+<b>
+Government School, नीम का थाना
+</b>
+
+<div>
+भाग संख्या 1 · बूथ नं. 1
+</div>
+
+<div style="margin-top:8px">
+
+मतदान केंद्र की जानकारी आधिकारिक चुनाव रिकॉर्ड से भी सत्यापित करें।
+
+</div>
+
+</div>
+
+
+<!-- BUTTONS -->
+
+<div class="actions">
+
+<button
+class="action primary"
+onclick="shareSlip(${index})">
+
+📱 पर्ची की फोटो WhatsApp करें
+
+</button>
+
+
+<button
+class="action"
+onclick="makePDF(${index})">
+
+📄 PDF बनाएं
+
+</button>
+
+
+<button
+class="action"
+onclick="printSlip(${index})">
+
+🖨️ प्रिंट
+
+</button>
+
+
+<button
+class="action"
+onclick="sendText(${index})">
+
+✉️ केवल टेक्स्ट भेजें
+
+</button>
+
+
+<button
+class="action danger"
+onclick="this.closest('.voter').remove()">
+
+बंद करें
+
+</button>
+
+</div>
+
+
+<div class="disclaimer">
+
+यह निजी, अनौपचारिक मतदाता सहायता सुविधा है।
+आधिकारिक निर्वाचन रिकॉर्ड ही अंतिम मान्य स्रोत है।
+
+</div>
+
+</div>
+
+`;
 
 }
 
 
-/* Search */
-document.getElementById("search").addEventListener("input", function(){
+/* SEARCH */
 
-  let q = this.value.trim().toLowerCase();
+function doSearch(){
 
-  let resultsBox = document.getElementById("results");
+const q=clean(search.value);
 
-  resultsBox.innerHTML = "";
+if(!q){
 
-  if(q === ""){
+result.innerHTML=`
 
-    document.getElementById("count").innerText =
-      "कुल मतदाता: " + voters.length;
+<div class="empty">
 
-    return;
+ऊपर अपना नाम, मकान नंबर या क्रम संख्या लिखें।
 
-  }
+</div>`;
 
+return;
 
-  let results = voters.filter(v => {
-
-    let name = getValue(v,[
-      "नाम",
-      "Name",
-      "name"
-    ]);
-
-    let father = getValue(v,[
-      "पिता/पति का नाम",
-      "पिता का नाम",
-      "पति का नाम",
-      "Father/Husband Name",
-      "father",
-      "husband",
-      "father_name"
-    ]);
-
-    let house = getValue(v,[
-      "मकान नं.",
-      "मकान नंबर",
-      "House No",
-      "house",
-      "house_no"
-    ]);
-
-    let serial = getValue(v,[
-      "क्रम संख्या",
-      "क्रमांक",
-      "Serial No",
-      "serial",
-      "serial_no"
-    ]);
+}
 
 
-    let text =
-      (name + " " +
-       father + " " +
-       house + " " +
-       serial).toLowerCase();
+const found=voters.filter(v=>{
 
+const fields=[
 
-    return text.includes(q);
+getValue(v,["name","नाम"]),
 
-  });
+getValue(v,[
+"relative",
+"father",
+"husband",
+"पिता/पति का नाम"
+]),
 
+getValue(v,[
+"house",
+"house_no",
+"मकान नं."
+]),
 
-  document.getElementById("count").innerText =
-    "मिले हुए परिणाम: " + results.length;
+getValue(v,[
+"serial",
+"क्रम संख्या"
+])
 
+];
 
-  if(results.length === 0){
-
-    resultsBox.innerHTML =
-      '<div class="noresult">कोई मतदाता नहीं मिला।<br>कृपया नाम या जानकारी दोबारा लिखें।</div>';
-
-    return;
-
-  }
-
-
-  /* अधिकतम 100 परिणाम */
-  results.slice(0,100).forEach(v => {
-
-    let name = getValue(v,[
-      "नाम","Name","name"
-    ]);
-
-    let father = getValue(v,[
-      "पिता/पति का नाम",
-      "पिता का नाम",
-      "पति का नाम",
-      "Father/Husband Name",
-      "father",
-      "husband",
-      "father_name"
-    ]);
-
-    let house = getValue(v,[
-      "मकान नं.",
-      "मकान नंबर",
-      "House No",
-      "house",
-      "house_no"
-    ]);
-
-    let age = getValue(v,[
-      "उम्र",
-      "आयु",
-      "Age",
-      "age"
-    ]);
-
-    let gender = getValue(v,[
-      "लिंग",
-      "Gender",
-      "gender"
-    ]);
-
-    let part = getValue(v,[
-      "भाग संख्या",
-      "भाग",
-      "Part No",
-      "part",
-      "part_no"
-    ]);
-
-    let booth = getValue(v,[
-      "मतदान केंद्र",
-      "Polling Station",
-      "Booth",
-      "booth",
-      "polling_station"
-    ]);
-
-    let serial = getValue(v,[
-      "क्रम संख्या",
-      "क्रमांक",
-      "Serial No",
-      "serial",
-      "serial_no"
-    ]);
-
-
-    let card = document.createElement("div");
-
-    card.className = "card";
-
-    card.innerHTML = `
-
-      <h3>${name || "नाम उपलब्ध नहीं"}</h3>
-
-      <div class="row">
-        <span class="label">पिता/पति का नाम:</span>
-        ${father || "-"}
-      </div>
-
-      <div class="row">
-        <span class="label">मकान नं.:</span>
-        ${house || "-"}
-      </div>
-
-      <div class="row">
-        <span class="label">उम्र:</span>
-        ${age || "-"}
-      </div>
-
-      <div class="row">
-        <span class="label">लिंग:</span>
-        ${gender || "-"}
-      </div>
-
-      <div class="row">
-        <span class="label">क्रम संख्या:</span>
-        ${serial || "-"}
-      </div>
-
-      <div class="row">
-        <span class="label">भाग संख्या:</span>
-        ${part || "-"}
-      </div>
-
-      <div class="row">
-        <span class="label">मतदान केंद्र:</span>
-        ${booth || "-"}
-      </div>
-
-    `;
-
-    resultsBox.appendChild(card);
-
-  });
+return fields.some(x=>clean(x).includes(q));
 
 });
+
+
+if(!found.length){
+
+result.innerHTML=`
+
+<div class="empty">
+
+कोई मतदाता नहीं मिला।
+
+</div>`;
+
+return;
+
+}
+
+
+let html=`
+
+<div class="resultsTitle">
+
+मतदाता सूचना पर्ची
+
+</div>
+
+`;
+
+
+found.forEach(v=>{
+
+const index=voters.indexOf(v);
+
+html+=voterCard(v,index);
+
+});
+
+
+html+=`
+
+<div class="actions">
+
+<button
+class="action"
+onclick="secondSearch()">
+
+दूसरा नाम खोजें
+
+</button>
+
+</div>
+
+`;
+
+
+result.innerHTML=html;
+
+}
+
+
+function secondSearch(){
+
+search.value="";
+
+search.focus();
+
+result.innerHTML=`
+
+<div class="empty">
+
+दूसरा नाम, मकान नंबर या क्रम संख्या खोजें।
+
+</div>`;
+
+}
+
+
+/* TEXT */
+
+function slipText(v){
+
+return `मतदाता सूचना पर्ची
+
+वार्ड 11 · नीम का थाना नगर पालिका
+
+नाम: ${getValue(v,["name","नाम"])}
+
+पिता/पति: ${getValue(v,[
+"relative",
+"father",
+"husband",
+"पिता/पति का नाम"
+])}
+
+उम्र: ${getValue(v,["age","उम्र"])}
+
+लिंग: ${getValue(v,["gender","लिंग"])}
+
+मकान नं.: ${getValue(v,[
+"house",
+"house_no",
+"मकान नं."
+])}
+
+क्रम संख्या: ${getValue(v,[
+"serial",
+"क्रम संख्या"
+])}
+
+भाग संख्या: 1
+
+बूथ नं.: 1
+
+मतदान केंद्र:
+Government School, नीम का थाना`;
+
+}
+
+
+/* TEXT SHARE */
+
+function sendText(index){
+
+const text=slipText(voters[index]);
+
+if(navigator.share){
+
+navigator.share({
+text:text
+});
+
+}else{
+
+navigator.clipboard?.writeText(text);
+
+alert("टेक्स्ट कॉपी हो गया।");
+
+}
+
+}
+
+
+/* WHATSAPP / SHARE */
+
+function shareSlip(index){
+
+const text=slipText(voters[index]);
+
+if(navigator.share){
+
+navigator.share({
+text:text
+});
+
+}else{
+
+window.open(
+"https://wa.me/?text="+encodeURIComponent(text),
+"_blank"
+);
+
+}
+
+}
+
+
+/* PRINT */
+
+function printSlip(index){
+
+const cards=document.querySelectorAll(".voter");
+
+cards.forEach((card,i)=>{
+
+card.style.display =
+i===index ? "block" : "none";
+
+});
+
+window.print();
+
+cards.forEach(card=>{
+
+card.style.display="";
+
+});
+
+}
+
+
+/* PDF */
+
+function makePDF(index){
+
+printSlip(index);
+
+}
+
+
+/* LOAD VOTERS */
+
+fetch("voters.json")
+
+.then(response=>response.json())
+
+.then(data=>{
+
+voters=
+Array.isArray(data)
+? data
+: (data.voters || data.data || []);
+
+})
+
+.catch(error=>{
+
+result.innerHTML=`
+
+<div class="empty">
+
+voters.json लोड नहीं हो सकी।
+
+</div>`;
+
+});
+
+
+search.addEventListener(
+"input",
+doSearch
+);
+
+
+clear.addEventListener(
+"click",
+secondSearch
+);
 
 </script>
 
