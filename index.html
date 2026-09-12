@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>वार्ड 8 मतदाता खोज</title>
+<title>वार्ड 11 मतदाता खोज</title>
 
 <style>
 *{
@@ -21,88 +21,91 @@ body{
 .header{
   background:#17365d;
   color:white;
+  padding:25px 15px;
   text-align:center;
-  padding:30px 15px;
 }
 
 .header h1{
   margin:0;
-  font-size:29px;
+  font-size:28px;
 }
 
 .header p{
   margin:8px 0 0;
-  font-size:16px;
+  font-size:15px;
 }
 
 .container{
   max-width:700px;
   margin:25px auto;
-  padding:15px;
+  padding:0 15px;
 }
 
 .search-box{
   background:white;
-  padding:25px;
-  border-radius:16px;
-  box-shadow:0 3px 15px rgba(0,0,0,.10);
-}
-
-.search-box h2{
-  text-align:center;
-  margin:0 0 20px;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
 input{
   width:100%;
-  padding:16px;
-  font-size:17px;
+  padding:15px;
+  font-size:18px;
   border:1px solid #ccc;
-  border-radius:9px;
+  border-radius:8px;
   outline:none;
 }
 
 button{
   width:100%;
   margin-top:12px;
-  padding:16px;
+  padding:14px;
+  font-size:17px;
   border:0;
-  border-radius:9px;
+  border-radius:8px;
   background:#17365d;
   color:white;
-  font-size:17px;
-  font-weight:bold;
 }
 
-button:active{
-  opacity:.8;
-}
-
-#results{
-  margin-top:20px;
+#status{
+  margin-top:15px;
+  text-align:center;
+  color:#666;
 }
 
 .result{
   background:white;
-  padding:20px;
-  margin-bottom:15px;
-  border-radius:14px;
-  box-shadow:0 2px 10px rgba(0,0,0,.08);
+  margin-top:15px;
+  padding:18px;
+  border-radius:12px;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
 .result h3{
-  margin:0 0 15px;
+  margin-top:0;
   color:#17365d;
-  font-size:21px;
 }
 
-.result p{
-  margin:9px 0;
-  font-size:16px;
+.row{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:8px 0;
+  border-bottom:1px solid #eee;
+}
+
+.row:last-child{
+  border-bottom:0;
+}
+
+.label{
+  font-weight:bold;
 }
 
 .no-result{
   background:white;
+  margin-top:15px;
   padding:20px;
   border-radius:12px;
   text-align:center;
@@ -110,9 +113,9 @@ button:active{
 
 .footer{
   text-align:center;
-  padding:25px;
   color:#777;
   font-size:13px;
+  padding:25px 15px;
 }
 </style>
 </head>
@@ -120,25 +123,23 @@ button:active{
 <body>
 
 <div class="header">
-  <h1>वार्ड 8 मतदाता खोज</h1>
-  <p>नगरपालिका नीमकाथाना</p>
+  <h1>वार्ड 11 मतदाता खोज</h1>
+  <p>मतदाता का नाम, पिता/पति का नाम या मकान नंबर खोजें</p>
 </div>
 
 <div class="container">
 
   <div class="search-box">
 
-    <h2>मतदाता खोजें</h2>
-
     <input
       type="text"
       id="searchInput"
-      placeholder="नाम या पिता/पति का नाम लिखें"
+      placeholder="नाम / पिता या पति का नाम / मकान नं."
     >
 
-    <button onclick="searchVoter()">
-      🔍 मतदाता खोजें
-    </button>
+    <button onclick="searchVoters()">मतदाता खोजें</button>
+
+    <div id="status">डेटा लोड हो रहा है...</div>
 
   </div>
 
@@ -147,157 +148,128 @@ button:active{
 </div>
 
 <div class="footer">
-  यह एक डेमो वेबसाइट है।
+  यह एक निजी एवं अनौपचारिक मतदाता खोज सुविधा है।
+  आधिकारिक निर्वाचन रिकॉर्ड ही मान्य होगा।
 </div>
-
 
 <script>
 
-const voters = [
+let voters = [];
 
-  {
-    name:"रामलाल शर्मा",
-    relative:"मोहनलाल शर्मा",
-    house:"123",
-    age:"45",
-    gender:"पुरुष",
-    part:"1",
-    serial:"1",
-    booth:"राजकीय प्राथमिक विद्यालय"
-  },
-
-  {
-    name:"सीमा देवी",
-    relative:"रमेश कुमार",
-    house:"124",
-    age:"38",
-    gender:"महिला",
-    part:"1",
-    serial:"2",
-    booth:"राजकीय प्राथमिक विद्यालय"
-  },
-
-  {
-    name:"सुरेश कुमार",
-    relative:"गोपाल राम",
-    house:"125",
-    age:"52",
-    gender:"पुरुष",
-    part:"1",
-    serial:"3",
-    booth:"राजकीय प्राथमिक विद्यालय"
-  },
-
-  {
-    name:"सुनीता देवी",
-    relative:"सुरेश कुमार",
-    house:"126",
-    age:"42",
-    gender:"महिला",
-    part:"1",
-    serial:"4",
-    booth:"राजकीय प्राथमिक विद्यालय"
-  },
-
-  {
-    name:"महेश कुमार",
-    relative:"रामस्वरूप",
-    house:"127",
-    age:"35",
-    gender:"पुरुष",
-    part:"1",
-    serial:"5",
-    booth:"राजकीय प्राथमिक विद्यालय"
-  }
-
-];
+/* voters.json से data लोड करें */
+fetch("voters.json")
+  .then(response => {
+    if(!response.ok){
+      throw new Error("voters.json नहीं मिला");
+    }
+    return response.json();
+  })
+  .then(data => {
+    voters = data;
+    document.getElementById("status").innerText =
+      "कुल " + voters.length + " मतदाता उपलब्ध हैं।";
+  })
+  .catch(error => {
+    document.getElementById("status").innerText =
+      "मतदाता डेटा लोड नहीं हो पाया।";
+    console.error(error);
+  });
 
 
-function searchVoter(){
+function normalize(text){
+  return String(text || "")
+    .toLowerCase()
+    .trim();
+}
 
-  const search =
-    document
-    .getElementById("searchInput")
-    .value
-    .trim()
-    .toLowerCase();
 
-  const results =
-    document.getElementById("results");
+function searchVoters(){
 
-  results.innerHTML = "";
+  const query = normalize(
+    document.getElementById("searchInput").value
+  );
 
-  if(search === ""){
+  const resultsBox = document.getElementById("results");
 
-    results.innerHTML =
-      '<div class="no-result">कृपया नाम या पिता/पति का नाम लिखें।</div>';
+  resultsBox.innerHTML = "";
 
+  if(!query){
+    resultsBox.innerHTML =
+      '<div class="no-result">कृपया नाम या मकान नंबर लिखें।</div>';
     return;
   }
 
-  const found =
-    voters.filter(voter =>
+  const matches = voters.filter(voter => {
 
-      voter.name.toLowerCase().includes(search) ||
+    const name = normalize(voter.name);
+    const relative = normalize(voter.relative);
+    const house = normalize(voter.house);
 
-      voter.relative.toLowerCase().includes(search)
-
+    return (
+      name.includes(query) ||
+      relative.includes(query) ||
+      house.includes(query)
     );
 
-  if(found.length === 0){
+  });
 
-    results.innerHTML =
-      '<div class="no-result">❌ कोई मतदाता नहीं मिला।</div>';
+  if(matches.length === 0){
+
+    resultsBox.innerHTML =
+      '<div class="no-result">कोई मतदाता नहीं मिला।</div>';
 
     return;
   }
 
-  found.forEach(voter => {
 
-    results.innerHTML += `
+  matches.forEach(voter => {
 
-      <div class="result">
+    const card = document.createElement("div");
 
-        <h3>${voter.name}</h3>
+    card.className = "result";
 
-        <p>
-          <strong>पिता/पति:</strong>
-          ${voter.relative}
-        </p>
+    card.innerHTML = `
 
-        <p>
-          <strong>मकान नं.:</strong>
-          ${voter.house}
-        </p>
+      <h3>${voter.name || "—"}</h3>
 
-        <p>
-          <strong>उम्र:</strong>
-          ${voter.age}
-        </p>
+      <div class="row">
+        <span class="label">पिता/पति का नाम</span>
+        <span>${voter.relative || "—"}</span>
+      </div>
 
-        <p>
-          <strong>लिंग:</strong>
-          ${voter.gender}
-        </p>
+      <div class="row">
+        <span class="label">मकान नं.</span>
+        <span>${voter.house || "—"}</span>
+      </div>
 
-        <p>
-          <strong>भाग संख्या:</strong>
-          ${voter.part}
-        </p>
+      <div class="row">
+        <span class="label">उम्र</span>
+        <span>${voter.age || "—"}</span>
+      </div>
 
-        <p>
-          <strong>क्रम संख्या:</strong>
-          ${voter.serial}
-        </p>
+      <div class="row">
+        <span class="label">लिंग</span>
+        <span>${voter.gender || "—"}</span>
+      </div>
 
-        <p>
-          <strong>मतदान केंद्र:</strong>
-          ${voter.booth}
-        </p>
+      <div class="row">
+        <span class="label">क्रम संख्या</span>
+        <span>${voter.serial || "—"}</span>
+      </div>
 
+      <div class="row">
+        <span class="label">भाग संख्या</span>
+        <span>${voter.part || "—"}</span>
+      </div>
+
+      <div class="row">
+        <span class="label">मतदान केंद्र</span>
+        <span>${voter.booth || "—"}</span>
       </div>
 
     `;
+
+    resultsBox.appendChild(card);
 
   });
 
