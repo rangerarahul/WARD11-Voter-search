@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>वार्ड 11 मतदाता सूचना पर्ची</title>
+<title>वार्ड 11 मतदाता पर्ची</title>
 
 <style>
 *{
@@ -21,76 +21,44 @@ body{
 .container{
   max-width:850px;
   margin:auto;
-  padding:14px;
+  padding:10px;
 }
 
-/* SEARCH */
-.searchBox{
-  background:#fff;
-  border:4px solid #33281f;
-  border-radius:28px;
-  min-height:70px;
-  display:flex;
-  align-items:center;
-  padding:8px 18px;
-  box-shadow:6px 7px 0 #f5b400;
-  margin-bottom:18px;
-}
+/* CANDIDATE HEADER */
 
-.searchIcon{
-  font-size:34px;
-  margin-right:14px;
-}
-
-.searchBox input{
-  flex:1;
-  border:0;
-  outline:0;
-  font-size:24px;
-  font-weight:bold;
-  background:transparent;
-}
-
-.clearBtn{
-  width:52px;
-  height:52px;
-  border:0;
-  border-radius:50%;
-  background:#fdeaea;
-  color:#b40000;
-  font-size:28px;
-}
-
-/* HERO */
 .hero{
   background:linear-gradient(135deg,#ffd52e,#fff08b);
-  border:4px solid white;
-  border-radius:30px;
+  border:4px solid #fff;
+  border-radius:28px;
   padding:15px;
   display:flex;
   align-items:center;
   gap:20px;
-  box-shadow:0 2px 10px #d8bd54;
+  box-shadow:0 3px 12px #d5bc55;
   margin-bottom:15px;
 }
 
 .candidatePhoto{
-  width:170px;
-  height:170px;
+  width:180px;
+  height:180px;
   border-radius:50%;
   object-fit:cover;
   object-position:center;
   border:6px solid white;
-  box-shadow:0 3px 8px #777;
+  box-shadow:0 3px 9px #777;
+}
+
+.heroText{
+  flex:1;
 }
 
 .party{
   display:inline-block;
-  background:#283da8;
+  background:#293da5;
   color:white;
   font-size:23px;
   font-weight:bold;
-  padding:10px 18px;
+  padding:9px 17px;
   border-radius:14px;
   margin-bottom:8px;
 }
@@ -98,7 +66,7 @@ body{
 .hero h1{
   margin:0;
   font-size:42px;
-  color:#a60000;
+  color:#a30000;
 }
 
 .hero p{
@@ -108,18 +76,19 @@ body{
 }
 
 /* BALLOT */
+
 .ballotRow{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px;
-  margin-bottom:18px;
+  margin-bottom:20px;
 }
 
 .ballot,
 .symbol{
   min-height:145px;
-  border:3px solid #e0bd45;
-  border-radius:25px;
+  border:3px solid #dfbd42;
+  border-radius:24px;
   background:white;
   display:flex;
   align-items:center;
@@ -148,80 +117,131 @@ body{
 }
 
 .symbol img{
-  width:100px;
-  height:100px;
+  width:105px;
+  height:105px;
   object-fit:contain;
 }
 
 .symbol small{
   display:block;
-  font-size:21px;
+  font-size:20px;
   font-weight:bold;
 }
 
 .symbol b{
   display:block;
-  font-size:25px;
   color:#a40000;
-  margin-top:7px;
+  font-size:25px;
+  margin-top:6px;
 }
 
-/* INFO */
-.info{
-  text-align:center;
-  font-size:18px;
-  color:#555;
-  margin:10px 0 15px;
+/* SEARCH SECTION */
+
+.searchSection{
+  margin-top:10px;
+  margin-bottom:20px;
+}
+
+.searchTitle{
+  font-size:31px;
+  font-weight:bold;
+  margin:12px 5px;
+}
+
+.searchSub{
+  font-size:17px;
+  color:#666;
+  margin:0 5px 12px;
+  line-height:1.5;
+}
+
+.searchBox{
+  background:white;
+  border:4px solid #33281f;
+  border-radius:25px;
+  min-height:70px;
+  display:flex;
+  align-items:center;
+  padding:7px 15px;
+  box-shadow:6px 7px 0 #f3b600;
+}
+
+.searchIcon{
+  font-size:34px;
+  margin-right:12px;
+}
+
+.searchBox input{
+  flex:1;
+  border:0;
+  outline:0;
+  background:transparent;
+  font-size:21px;
+  font-weight:bold;
+  min-width:0;
+}
+
+.clearBtn{
+  width:48px;
+  height:48px;
+  border:0;
+  border-radius:50%;
+  background:#fdeaea;
+  color:#b00000;
+  font-size:28px;
 }
 
 /* RESULT */
+
+#results{
+  margin-top:15px;
+}
+
 .result{
   background:white;
-  border:3px solid #e0bd45;
+  border:3px solid #dfbd42;
   border-radius:25px;
-  padding:16px;
-  margin-bottom:18px;
-  box-shadow:0 2px 7px #ddd;
+  padding:15px;
+  box-shadow:0 2px 8px #ddd;
 }
 
 .resultTitle{
   text-align:center;
-  font-size:23px;
+  font-size:22px;
   font-weight:bold;
-  margin-bottom:14px;
+  margin-bottom:15px;
 }
 
 .voterCard{
   border:3px solid #292929;
   border-radius:20px;
   overflow:hidden;
-  margin-bottom:15px;
+  margin-bottom:18px;
 }
 
 .cardHead{
-  padding:13px 15px;
+  padding:12px 14px;
   border-bottom:1px solid #aaa;
   display:flex;
   justify-content:space-between;
-  font-size:17px;
+  gap:10px;
+  font-size:16px;
 }
 
 .voterName{
-  font-size:31px;
+  font-size:30px;
   font-weight:bold;
-  margin:8px 15px 3px;
+  padding:8px 15px 3px;
 }
 
 .serial{
-  font-size:20px;
-  font-weight:bold;
-  color:#222;
+  font-size:19px;
 }
 
 .details{
   padding:0 15px 12px;
-  font-size:19px;
-  line-height:1.55;
+  font-size:18px;
+  line-height:1.6;
 }
 
 .boxRow{
@@ -233,10 +253,9 @@ body{
 
 .numberBox{
   border-radius:13px;
-  padding:9px 5px;
+  padding:9px 4px;
   text-align:center;
   color:white;
-  font-weight:bold;
   background:#30439f;
 }
 
@@ -251,18 +270,20 @@ body{
 
 .numberBox small{
   display:block;
-  font-size:15px;
+  font-size:14px;
+  font-weight:bold;
 }
 
 .numberBox strong{
-  font-size:29px;
+  font-size:28px;
 }
 
 /* POLLING CENTER */
+
 .polling{
   margin:0 15px 15px;
   padding:13px;
-  border:2px solid #e1b92d;
+  border:2px solid #dfbd42;
   border-radius:15px;
   background:#fff8db;
 }
@@ -273,31 +294,33 @@ body{
 }
 
 .pollingText{
-  font-size:18px;
-  margin-top:5px;
+  font-size:17px;
   line-height:1.5;
+  margin-top:5px;
 }
 
 /* HOUSE */
+
 .houseSection{
-  padding:15px;
+  padding:0 15px 15px;
 }
 
 .houseTitle{
-  font-size:21px;
+  font-size:20px;
   font-weight:bold;
-  margin-bottom:10px;
+  margin-bottom:9px;
 }
 
 .housePerson{
-  background:#f5f5f5;
-  border-radius:12px;
-  padding:9px 12px;
-  margin-bottom:7px;
+  background:#f3f3f3;
+  border-radius:11px;
+  padding:8px 11px;
+  margin-bottom:6px;
   font-size:17px;
 }
 
-/* ACTION BUTTONS */
+/* BUTTONS */
+
 .actions{
   display:grid;
   grid-template-columns:1.4fr 1fr 1fr 1.2fr 1fr;
@@ -306,84 +329,97 @@ body{
 }
 
 .actions button{
-  min-height:58px;
+  min-height:55px;
   border:2px solid #dfc56d;
-  border-radius:14px;
+  border-radius:13px;
   background:white;
-  font-size:16px;
+  font-size:15px;
   font-weight:bold;
-  cursor:pointer;
 }
 
 .whatsapp{
   background:#168c4d !important;
   color:white;
-  border-color:#11733e !important;
+  border-color:#168c4d !important;
 }
 
 .close{
-  color:#a40000;
+  color:#a00000;
 }
 
 /* CUT LINE */
+
 .cutLine{
   border-top:3px dashed #777;
   margin:10px 15px 0;
-  position:relative;
   text-align:center;
 }
 
 .cutLine span{
-  background:white;
-  padding:0 15px;
   position:relative;
   top:-14px;
+  background:white;
+  padding:0 15px;
   color:#555;
-  font-size:16px;
 }
 
 /* CANDIDATE FOOTER */
+
 .candidateFooter{
   padding:0 25px 18px;
-  text-align:left;
 }
 
 .candidateFooter h2{
   font-size:30px;
-  margin:3px 0;
+  margin:4px 0;
 }
 
 .candidateFooter p{
-  margin:4px 0;
   font-size:18px;
   line-height:1.5;
+  margin:4px 0;
 }
 
 .disclaimer{
-  text-align:center !important;
+  text-align:center;
   color:#666;
-  font-size:15px !important;
+  font-size:14px !important;
   margin-top:12px !important;
 }
 
 .publisher{
-  text-align:center !important;
+  text-align:center;
   color:#555;
-  font-size:16px !important;
+  font-size:15px !important;
+}
+
+/* BEFORE SEARCH */
+
+.startMessage{
+  background:white;
+  border:2px dashed #d8bd54;
+  border-radius:18px;
+  padding:22px 15px;
+  text-align:center;
+  color:#777;
+  font-size:18px;
+  line-height:1.5;
 }
 
 /* NO RESULT */
+
 .noResult{
-  text-align:center;
   background:white;
   border:2px solid #ddd;
   border-radius:18px;
-  padding:25px;
-  font-size:20px;
+  padding:22px;
+  text-align:center;
+  font-size:18px;
   color:#777;
 }
 
 /* MOBILE */
+
 @media(max-width:600px){
 
   .container{
@@ -391,13 +427,13 @@ body{
   }
 
   .hero{
-    gap:12px;
     padding:10px;
+    gap:12px;
   }
 
   .candidatePhoto{
-    width:120px;
-    height:120px;
+    width:125px;
+    height:125px;
   }
 
   .party{
@@ -415,7 +451,7 @@ body{
 
   .ballot,
   .symbol{
-    min-height:120px;
+    min-height:125px;
   }
 
   .ballot strong{
@@ -423,8 +459,8 @@ body{
   }
 
   .symbol img{
-    width:72px;
-    height:72px;
+    width:75px;
+    height:75px;
   }
 
   .symbol small{
@@ -435,12 +471,16 @@ body{
     font-size:18px;
   }
 
-  .actions{
-    grid-template-columns:1.5fr 1fr;
+  .searchTitle{
+    font-size:27px;
   }
 
-  .actions button{
-    font-size:15px;
+  .searchBox input{
+    font-size:18px;
+  }
+
+  .cardHead{
+    font-size:14px;
   }
 
   .voterName{
@@ -450,24 +490,28 @@ body{
   .details{
     font-size:17px;
   }
+
+  .actions{
+    grid-template-columns:1.5fr 1fr;
+  }
+
+  .actions button{
+    font-size:14px;
+  }
+
 }
 
-/* PRINT / PDF */
+/* PRINT */
+
 @media print{
 
   body{
     background:white;
   }
 
-  .container{
-    max-width:none;
-    padding:0;
-  }
-
-  .searchBox,
   .hero,
   .ballotRow,
-  .info,
+  .searchSection,
   .actions{
     display:none !important;
   }
@@ -475,12 +519,7 @@ body{
   .result{
     border:0;
     box-shadow:none;
-    margin:0;
     padding:0;
-  }
-
-  .resultTitle{
-    margin-top:0;
   }
 
   .voterCard{
@@ -490,47 +529,31 @@ body{
 </style>
 </head>
 
+
 <body>
 
 <div class="container">
 
-  <!-- SEARCH -->
-  <div class="searchBox">
 
-    <span class="searchIcon">⌕</span>
+  <!-- CANDIDATE -->
 
-    <input
-      id="search"
-      type="text"
-      placeholder="नाम, मकान नं. या क्रम संख्या..."
-      autocomplete="off"
-    >
-
-    <button
-      class="clearBtn"
-      onclick="clearSearch()">
-      ×
-    </button>
-
-  </div>
-
-
-  <!-- CANDIDATE HEADER -->
   <div class="hero">
 
     <img
       src="DFA48B9F-A6ED-44DF-BA27-67BBCF543FDA(1).jpeg"
       class="candidatePhoto"
-      alt="उम्मीदवार राहुल रांगेरा"
+      alt="राहुल रांगेरा"
     >
 
-    <div>
+    <div class="heroText">
 
       <div class="party">
         भारतीय जनता पार्टी
       </div>
 
-      <h1>वार्ड 11</h1>
+      <h1>राहुल रांगेरा</h1>
+
+      <p>वार्ड 11</p>
 
       <p>नीम का थाना नगर पालिका</p>
 
@@ -541,7 +564,8 @@ body{
   </div>
 
 
-  <!-- BALLOT / SYMBOL -->
+  <!-- BALLOT -->
+
   <div class="ballotRow">
 
     <div class="ballot">
@@ -557,7 +581,7 @@ body{
 
       <img
         src="bjp-logo.png.JPG"
-        alt="BJP चुनाव चिन्ह"
+        alt="कमल का फूल"
       >
 
       <div>
@@ -573,14 +597,56 @@ body{
   </div>
 
 
-  <div class="info">
-    मतदाता का नाम, पिता/पति का नाम,
-    मकान नंबर या क्रम संख्या खोजें
+  <!-- SEARCH -->
+
+  <div class="searchSection">
+
+    <div class="searchTitle">
+      अपनी मतदाता पर्ची खोजें
+    </div>
+
+    <div class="searchSub">
+      नाम, पिता/पति का नाम, मकान नंबर या क्रम संख्या लिखकर खोजें।
+    </div>
+
+
+    <div class="searchBox">
+
+      <span class="searchIcon">⌕</span>
+
+      <input
+        id="search"
+        type="text"
+        placeholder="नाम, मकान नं. या क्रम संख्या..."
+        autocomplete="off"
+      >
+
+      <button
+        class="clearBtn"
+        onclick="clearSearch()">
+        ×
+      </button>
+
+    </div>
+
   </div>
 
 
   <!-- RESULTS -->
-  <div id="results"></div>
+
+  <div id="results">
+
+    <div class="startMessage">
+
+      🔎 ऊपर दिए गए Search Box में
+      <strong>नाम, मकान नंबर या क्रम संख्या</strong>
+      लिखें।<br>
+
+      खोज करने के बाद संबंधित मतदाता की पर्ची यहाँ दिखाई देगी।
+
+    </div>
+
+  </div>
 
 </div>
 
@@ -590,30 +656,45 @@ body{
 let voters = [];
 
 
-/* LOAD VOTER DATA */
+/* LOAD JSON */
 
 fetch("voters.json")
 
-.then(response => response.json())
+.then(response => {
+
+  if(!response.ok){
+    throw new Error("voters.json नहीं मिला");
+  }
+
+  return response.json();
+
+})
 
 .then(data => {
 
-  voters = Array.isArray(data) ? data : [];
+  voters =
+    Array.isArray(data)
+    ? data
+    : [];
 
-  render(voters);
+  /* IMPORTANT:
+     शुरुआत में कोई voter नहीं दिखाना */
+
+  render([]);
 
 })
 
 .catch(error => {
 
-  document.getElementById("results").innerHTML =
-  `
-  <div class="noResult">
-    voters.json लोड नहीं हो पाया।
-  </div>
-  `;
-
   console.error(error);
+
+  document.getElementById("results").innerHTML = `
+
+    <div class="noResult">
+      मतदाता डेटा लोड नहीं हो पाया।
+    </div>
+
+  `;
 
 });
 
@@ -625,14 +706,19 @@ document
 .addEventListener("input",function(){
 
   const q =
-    this.value.trim().toLowerCase();
+    this.value
+    .trim()
+    .toLowerCase();
 
+
+  /* खाली search = कोई voter नहीं */
 
   if(!q){
 
-    render(voters);
+    render([]);
 
     return;
+
   }
 
 
@@ -644,16 +730,22 @@ document
         v.serial,
         v.slno,
         v.sr,
+
         v.name,
+
         v.relative,
         v.father,
         v.husband,
+
         v.house,
         v.houseNo,
+
         v.age,
         v.gender,
+
         v.epic,
         v.voterId,
+
         v.part,
         v.booth
 
@@ -681,16 +773,49 @@ function render(list){
     document.getElementById("results");
 
 
+  /* NO SEARCH */
+
   if(!list.length){
 
-    results.innerHTML =
-    `
-    <div class="noResult">
-      कोई मतदाता नहीं मिला।
-    </div>
-    `;
+    const searchValue =
+      document
+      .getElementById("search")
+      .value
+      .trim();
+
+
+    if(!searchValue){
+
+      results.innerHTML = `
+
+        <div class="startMessage">
+
+          🔎 Search Box में
+          <strong>नाम, मकान नंबर या क्रम संख्या</strong>
+          लिखकर मतदाता खोजें।
+
+        </div>
+
+      `;
+
+    }
+
+    else{
+
+      results.innerHTML = `
+
+        <div class="noResult">
+
+          कोई मतदाता नहीं मिला।
+
+        </div>
+
+      `;
+
+    }
 
     return;
+
   }
 
 
@@ -715,7 +840,11 @@ function render(list){
   });
 
 
-  html += `</div>`;
+  html += `
+
+    </div>
+
+  `;
 
 
   results.innerHTML = html;
@@ -768,10 +897,6 @@ function voterCard(v,index){
     "-";
 
 
-  const epicMasked =
-    maskEpic(epic);
-
-
   return `
 
   <div
@@ -798,9 +923,7 @@ function voterCard(v,index){
       ${escapeHtml(name)}
 
       <span class="serial">
-
-        &nbsp;&nbsp;क्र. ${escapeHtml(serial)}
-
+        &nbsp; क्र. ${escapeHtml(serial)}
       </span>
 
     </div>
@@ -828,14 +951,13 @@ function voterCard(v,index){
 
       <div>
         मतदाता आईडी:
-        ${escapeHtml(epicMasked)}
+        ${escapeHtml(maskEpic(epic))}
       </div>
 
     </div>
 
 
     <div class="boxRow">
-
 
       <div class="numberBox">
 
@@ -875,20 +997,14 @@ function voterCard(v,index){
 
       </div>
 
-
     </div>
 
-
-    <!-- POLLING CENTER -->
 
     <div class="polling">
 
       <div class="pollingTitle">
-
         📍 आपका मतदान केंद्र
-
       </div>
-
 
       <div class="pollingText">
 
@@ -910,26 +1026,18 @@ function voterCard(v,index){
     </div>
 
 
-    <!-- HOUSE MEMBERS -->
-
     <div class="houseSection">
 
       <div class="houseTitle">
-
         🏠 इसी मकान में दर्ज मतदाता
-
       </div>
-
 
       ${houseMembers(house)}
 
     </div>
 
 
-    <!-- BUTTONS -->
-
     <div class="actions">
-
 
       <button
         class="whatsapp"
@@ -973,11 +1081,8 @@ function voterCard(v,index){
 
       </button>
 
-
     </div>
 
-
-    <!-- CUT LINE -->
 
     <div class="cutLine">
 
@@ -988,37 +1093,23 @@ function voterCard(v,index){
     </div>
 
 
-    <!-- CANDIDATE DETAILS -->
+    <!-- CANDIDATE NAME -->
 
     <div class="candidateFooter">
-
 
       <h2>
         राहुल रांगेरा
       </h2>
 
-
       <p>
         भाजपा प्रत्याशी · पार्षद पद · वार्ड 11
       </p>
 
-
       <p>
-
         <strong>
           बैलेट नं. 2 · चुनाव चिन्ह — कमल का फूल
         </strong>
-
       </p>
-
-
-      <p>
-
-        बैलेट नं. 2 के सामने
-        चुनाव चिन्ह की जानकारी देखें।
-
-      </p>
-
 
       <p class="disclaimer">
 
@@ -1027,7 +1118,6 @@ function voterCard(v,index){
         मतदान के समय मूल फोटो पहचान-पत्र साथ रखें।
 
       </p>
-
 
       <p class="publisher">
 
@@ -1038,7 +1128,6 @@ function voterCard(v,index){
         नीम का थाना नगर पालिका
 
       </p>
-
 
     </div>
 
@@ -1054,10 +1143,7 @@ function voterCard(v,index){
 
 function houseMembers(house){
 
-  if(
-    !house ||
-    house === "-"
-  ){
+  if(!house || house === "-"){
 
     return `
       <div class="housePerson">
@@ -1129,17 +1215,12 @@ function houseMembers(house){
 }
 
 
-/* MASK VOTER ID */
+/* MASK EPIC */
 
 function maskEpic(epic){
 
-  if(
-    !epic ||
-    epic === "-"
-  ){
-
+  if(!epic || epic === "-"){
     return "-";
-
   }
 
 
@@ -1148,9 +1229,7 @@ function maskEpic(epic){
 
 
   if(str.length <= 4){
-
     return "••••";
-
   }
 
 
@@ -1207,7 +1286,7 @@ function shareWhatsApp(index){
 }
 
 
-/* TEXT SHARE */
+/* TEXT */
 
 function sendText(index){
 
@@ -1236,13 +1315,8 @@ function sendText(index){
   if(navigator.share){
 
     navigator.share({
-
-      title:
-        "मतदाता सूचना पर्ची",
-
-      text:
-        message
-
+      title:"मतदाता सूचना पर्ची",
+      text:message
     });
 
   }
@@ -1250,17 +1324,11 @@ function sendText(index){
   else if(navigator.clipboard){
 
     navigator.clipboard
-      .writeText(message);
+    .writeText(message);
 
     alert(
       "टेक्स्ट कॉपी हो गया है।"
     );
-
-  }
-
-  else{
-
-    alert(message);
 
   }
 
@@ -1309,9 +1377,8 @@ function printSlip(index){
 function makePDF(index){
 
   alert(
-    "प्रिंट विंडो में 'Save as PDF' चुनें।"
+    "Print window में 'Save as PDF' चुनें।"
   );
-
 
   printSlip(index);
 
@@ -1329,10 +1396,7 @@ function closeCard(index){
 
 
   if(card){
-
-    card.style.display =
-      "none";
-
+    card.style.display = "none";
   }
 
 }
@@ -1346,9 +1410,7 @@ function clearSearch(){
     .getElementById("search")
     .value = "";
 
-
-  render(voters);
-
+  render([]);
 
   document
     .getElementById("search")
@@ -1357,7 +1419,7 @@ function clearSearch(){
 }
 
 
-/* HTML SECURITY */
+/* SECURITY */
 
 function escapeHtml(value){
 
